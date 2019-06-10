@@ -5,16 +5,18 @@
 
 {% for beast in beasts %}
     <div class="card">
-        <div class="card-content">
-            <span class="card-title">{{ beast.name }}</span>
-            <p>Breed: {{ beast.breed }}</p>
-            <p>Description: {{ beast.description }}</p>
-            {% if beast.age > 0 %}
-                <p>Age: {{ beast.age }}</p>
-            {% else %}
-                <p>Age: Kitten</p>
-            {% endif %}
-        </div>
+        <a href="{% url 'detail' beast.id %}">  
+            <div class="card-content">
+                <span class="card-title">{{ beast.name }}</span>
+                <p>Breed: {{ beast.breed }}</p>
+                <p>Description: {{ beast.description }}</p>
+                {% if beast.age > 0 %}
+                    <p>Age: {{ beast.age }}</p>
+                {% else %}
+                    <p>Age: Kitten</p>
+                {% endif %}
+            </div>
+        </a> 
     </div>
 {% endfor %}
 
