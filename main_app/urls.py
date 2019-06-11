@@ -10,4 +10,5 @@ urlpatterns = [
     path('beasts/create/', views.BeastCreate.as_view(), name='beasts_create'),
     path('beasts/<int:pk>/update/', views.BeastUpdate.as_view(), name='beasts_update'),
     path('beasts/<int:pk>/delete/', views.BeastDelete.as_view(), name='beasts_delete'),
+    path('beasts/<int:beast_id>/add_feeding/', views.add_feeding, name='add_feeding'),
 ]

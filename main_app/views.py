@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Beast
+from .forms import FeedingForm
 
 # Create your views here.
 class BeastUpdate(UpdateView):
@@ -28,4 +29,13 @@ def beasts_index(request):
 
 def beasts_detail(request, beast_id):
     beast = Beast.objects.get(id=beast_id)
-    return render(request, 'beasts/detail.html', { 'beast': beast} )
+    feeding_form = FeedingForm()
+    return render(request, 'beasts/detail.html', { 'beast': beast, 'feeding_form': feeding_form} )
+
+def add_feeding(request, beast_id):
+    form = FeedingForm(request.POST)
+    if form.is_valid():
+        new_feeding = form.save(commit=False)
+        new_feeding.beast_id = beast_id
+        new_feeding.save()
+    return redirect('detail', beast_id=beast_id)
