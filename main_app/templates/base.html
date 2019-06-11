@@ -17,8 +17,9 @@
                     <li><a href="/" class="left brand-logo">&nbsp;&nbsp;FantasticBeastsCollector</a></li>
                 </ul>
                 <ul class="right">
-                    <li><a href="/about">About</a></li>
-                    <li><a href="/beasts">View All My Beasts</a></li>
+                    <li><a href="{% url 'about' %}">About</a></li>
+                    <li><a href="{% url 'beasts_create' %}">Add a Fantastic Beast</a></li>
+                    <li><a href="{% url 'index' %}">View All My Beasts</a></li>
                 </ul>
             </div>
         </nav>

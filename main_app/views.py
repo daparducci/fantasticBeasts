@@ -1,7 +1,20 @@
 from django.shortcuts import render
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Beast
 
 # Create your views here.
+class BeastUpdate(UpdateView):
+    model = Beast
+    fields = ['breed', 'description', 'magic_abilities', 'dangers', 'habitat', 'age']
+
+class BeastDelete(DeleteView):
+    model = Beast
+    success_url = '/beasts/'
+
+class BeastCreate(CreateView):
+    model = Beast
+    fields = '__all__'
+    success_url = '/beasts/'
 
 def home(request):
     return render(request, 'home.html')

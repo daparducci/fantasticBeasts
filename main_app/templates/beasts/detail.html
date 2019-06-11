@@ -15,6 +15,10 @@
     <p>Habitat: {{ beast.habitat }}</p>
     
   </div>
+  <div class="card-action">
+      <a href="{% url 'beasts_update' beast.id %}">Edit</a>
+      <a href="{% url 'beasts_delete' beast.id %}">Delete</a>
+    </div>
 </div>
 
 {% endblock %}
