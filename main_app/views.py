@@ -30,8 +30,10 @@ def beasts_index(request):
 
 def beasts_detail(request, beast_id):
     beast = Beast.objects.get(id=beast_id)
+    toys_beast_doesnt_have = Toy.objects.exclude(id__in = beast.toys.all().values_list('id'))
     feeding_form = FeedingForm()
-    return render(request, 'beasts/detail.html', { 'beast': beast, 'feeding_form': feeding_form} )
+    return render(request, 'beasts/detail.html', { 'beast': beast, 'feeding_form': feeding_form, 'toys': toys_beast_doesnt_have 
+    })
 
 def add_feeding(request, beast_id):
     form = FeedingForm(request.POST)
@@ -58,3 +60,7 @@ class ToyUpdate(UpdateView):
 class ToyDelete(DeleteView):
   model = Toy
   success_url = '/toys/'
+
+def assoc_toy(request, beast_id, toy_id):
+  Beast.objects.get(id=beast_id).toys.add(toy_id)
+  return redirect('detail', beast_id=beast_id)
