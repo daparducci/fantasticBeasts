@@ -70,6 +70,10 @@ def assoc_toy(request, beast_id, toy_id):
   Beast.objects.get(id=beast_id).toys.add(toy_id)
   return redirect('detail', beast_id=beast_id)
 
+def toy_remove(request, beast_id, toy_id):
+  Beast.objects.get(id=beast_id).toys.remove(toy_id)
+  return redirect('detail', beast_id=beast_id)
+
 def add_photo(request, beast_id):
   photo_file = request.FILES.get('photo-file', None)
   if photo_file:

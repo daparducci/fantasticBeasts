@@ -72,6 +72,7 @@
             <span class="card-title">
               A <span style="color: {{ toy.color }}">{{ toy.color }}</span> {{ toy.name }}
             </span>
+            <a href="{% url 'toy_remove' beast.id toy.id %}">Delete</a>
           </div>
         </div>
       {% endfor %}
